@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community News by Mohammed Ali</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #333;
+    }
+    header {
+      background: #004080;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    article {
+      background: white;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    article img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    article h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.8rem;
+      color: #004080;
+    }
+    article small {
+      display: block;
+      margin-bottom: 1rem;
+      color: #666;
+    }
+    article p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .facebook-section {
+      background: white;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+    }
+    .facebook-section h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eee;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hello World</h1>
+    <p>Dedicated to Community News & Journalism</p>
+  </header>
+  
+  <main id="articles">
+    <!-- Articles will appear here -->
+  </main>
+
+  <section class="facebook-section">
+    <h2>Follow Us on Facebook</h2>
+    <div id="fb-root"></div>
+    <script>
+      if (navigator.onLine) {
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      } else {
+        document.querySelector('.facebook-section').innerHTML += 
+          '<p style="text-align:center; color:#666;">Facebook feed unavailable offline.</p>';
+      }
+    </script>
+
+    <div class="fb-page" 
+         data-href="https://www.facebook.com/YOUR_PAGE_USERNAME" 
+         data-tabs="timeline" 
+         data-width="100%" 
+         data-height="" 
+         data-small-header="false" 
+         data-adapt-container-width="true" 
+         data-hide-cover="false" 
+         data-show-facepile="true">
+    </div>
+  </section>
+  
+  <footer>
+    <p>Website by <strong>Mohammed Ali</strong> – Community Reporter</p>
+  </footer>
+
+  <script>
+    const articles = [
+      {
+        title: "Local Community Event",
+        date: "17 August 2025",
+        image: "https://via.placeholder.com/900x400?text=Community+Event",
+        content: "The local community gathered today to celebrate culture, unity, and diversity. Families enjoyed food, games, and music in a joyful atmosphere."
+      },
+      {
+        title: "Football Academy Success",
+        date: "10 August 2025",
+        image: "https://via.placeholder.com/900x400?text=Football+Academy",
+        content: "The Khizra Football Academy hosted an exciting match showcasing young local talent. Coaches praised the dedication of the players and volunteers."
+      }
+    ];
+
+    const container = document.getElementById('articles');
+    articles.forEach(article => {
+      const el = document.createElement('article');
+      el.innerHTML = `
+        <img src="${article.image}" alt="${article.title}">
+        <h2>${article.title}</h2>
+        <small><em>${article.date}</em></small>
+        <p>${article.content}</p>
+      `;
+      container.appendChild(el);
+    });
+  </script>
+</body>
+</html>
