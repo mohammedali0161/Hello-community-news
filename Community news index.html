@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community News by Mohammed Ali</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f9fa; color:#333; }
+    header { background:#004080; color:white; padding:2rem 1rem; text-align:center; }
+    header h1 { margin:0; font-size:3rem; }
+    header p { margin:0.5rem 0 0; font-size:1.2rem; }
+    main { padding:2rem; max-width:900px; margin:auto; }
+    article { background:white; margin-bottom:2rem; padding:1rem; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.15); overflow:hidden; }
+    article img { width:100%; border-radius:10px; margin-bottom:1rem; }
+    article h2 { margin:0 0 0.5rem; font-size:1.8rem; color:#004080; }
+    article small { display:block; margin-bottom:1rem; color:#666; }
+    article p { font-size:1rem; line-height:1.6; }
+    footer { text-align:center; padding:1rem; background:#eee; margin-top:0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hello World</h1>
+    <p>Dedicated to Community News & Journalism</p>
+  </header>
+
+  <main id="articles">
+    <!-- Articles will appear here -->
+  </main>
+
+  <footer>
+    <p>Website by <strong>Mohammed Ali</strong> – Community Reporter</p>
+  </footer>
+
+  <script>
+    async function loadArticles() {
+      const container = document.getElementById('articles');
+      const articleFiles = ['articles/article1.txt']; // Add more files here as needed
+
+{
+Title: Play day 2025
+Date: 17 August 2025
+Image: https://x.com/MCRActive/status/1950920054280716506
+Content: 🎉 National Play Day 2025 at Khizra Mosque! 🎉
+
+We joined in the nationwide celebration of #NationalPlayDay – a special day that highlights every child’s right to play and the incredible benefits it brings to their health, happiness, and creativity.
+
+Khizra Mosque was buzzing with joy as children of all ages enjoyed a fantastic range of fun-filled activities – from arts & crafts to free play, team sports, and more! ⚽
+
+The highlight? Cutting the cake together and celebrating a day dedicated just to children.  
+
+It was a day full of laughter, friendship, and memorable moments – all made possible through the power of play.
+
+A huge thank you to all the families, staff, and volunteers who helped make the day so special 💛
+And a big shoutout to @ManCityCouncil and @UNICEF for championing children’s rights and the importance of play!
+},
+
+      for (const file of articleFiles) {
+        try {
+          const response = await fetch(file);
+          const text = await response.text();
+          const lines = text.split('\n').filter(l => l.trim() !== '');
+          let articleData = {};
+          lines.forEach(line => {
+            const [key, ...rest] = line.split(': ');
+            articleData[key.toLowerCase()] = rest.join(': ');
+          });
+          const el = document.createElement('article');
+          el.innerHTML = `
+            <img src="${articleData.image}" alt="${articleData.title}">
+            <h2>${articleData.title}</h2>
+            <small><em>${articleData.date}</em></small>
+            <p>${articleData.content}</p>
+          `;
+          container.appendChild(el);
+        } catch(err) {
+          console.error('Error loading article:', file, err);
+        }
+      }
+    }
+    loadArticles();
+  </script>
+</body>
+</html>
